@@ -14,8 +14,8 @@ const express = require('express'),
 shell.mkdir('-p', folderPath);
 
  // Change the limits according to your response size
-app.use(bodyParser.json({limit: '50mb', extended: true}));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true })); 
+app.use(bodyParser.json({limit: '500mb', extended: true}));
+app.use(bodyParser.urlencoded({ limit: '500mb', extended: true }));
 
 app.get('/', (req, res) => res.send('Hello, I write data to file. Send them requests!'));
 
@@ -27,15 +27,14 @@ app.post('/write', (req, res) => {
     filePath = `${path.join(folderPath, filename)}.${extension}`,
     options = req.body.options || undefined;
 
-  fs[fsMode](filePath, req.body.responseData, options, (err) => {
-    if (err) {
-      console.log(err);
-      res.send('Error');
-    }
-    else {
-      res.send('Success');
-    }
+  var isFirstTime = req.body.isFirstTime;
+  var flag = fsMode === 'writeFile' || isFirstTime ? 'w' : 'a';
+  var stream = fs.createWriteStream(filePath, {flags: flag});
+  stream.on('error', function(err) {
+    console.error(`Error writing the file ${filePath}: ${err}`);
   });
+  stream.write(req.body.responseData);
+  stream.end();
 });
 
 app.listen(3000, () => {
