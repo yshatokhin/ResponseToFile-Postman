@@ -30,17 +30,17 @@ You can choose to write your own local server or edit the one provided below as 
 
 ## Steps To Use
 1. Put all the requests you want to write the responses for, under this collection.
- 
-2. Clone the following repository to your machine - https://github.com/sivcan/ResponseToFile-Postman or use the following command - `git clone https://github.com/sivcan/ResponseToFile-Postman`
 
-3. Navigate into the directory and install the dependencies. Use the following command: `npm i` 
+2. Clone the following repository to your machine - https://github.com/yshatokhin/ResponseToFile-Postman or use the following command - `git clone https://github.com/yshatokhin/ResponseToFile-Postman`
+
+3. Navigate into the directory and install the dependencies. Use the following command: `npm i`
 
 4. Run the local server. Use the following command: `node script.js`
 
 5. Now, the responses for every request which is a part of this collection will be written to the `Responses` folder inside the project repo.
 You can modify the local server's code to change the file location.
 
-5. Run your requests through builder / run through collection runner and store your data locally. 
+5. Run your requests through builder / run through collection runner and store your data locally.
 
 
 You can modify the script and the local server to support more data formats / data that you want to write to the file.
